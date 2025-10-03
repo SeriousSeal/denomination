@@ -1,0 +1,59 @@
+<div class="container">
+    <h1>{{ title }}</h1>
+    <div class="controls">
+        <label>
+            Betrag (€)
+            <input [ngModel]="amount()" (ngModelChange)="amount.set($event)" placeholder="z.B. 234,23" />
+        </label>
+        <label>
+            <input type="checkbox" [ngModel]="useBackend()" (ngModelChange)="useBackend.set($event)" />
+            Berechnung im Backend
+        </label>
+        <label>
+            <input type="checkbox" [ngModel]="calculateDifference()"
+                (ngModelChange)="calculateDifference.set($event)" />
+            Unterschied zur vorherigen Berechnung anzeigen
+        </label>
+        <button (click)="onCalculate()" [disabled]="loading()">Berechnen</button>
+        <div class="loading" *ngIf="loading()">Bitte warten…</div>
+    </div>
+
+    <div class="error" *ngIf="error()">{{ error() }}</div>
+
+    <div class="result" *ngIf="result() as res">
+        <h2>Ergebnis</h2>
+        <p>Gesamt: {{ toEuro(res.amountInCents) }} €</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Wert (Cent)</th>
+                    <th>Anzahl</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let row of sortedDenominations()">
+                    <td>{{ row[0] }}</td>
+                    <td>{{ row[1] }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="diff" *ngIf="calculateDifference()">
+            <p>Vorheriger Betrag: {{ toEuro(res.previousCalculation) }} €</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Wert (Cent)</th>
+                        <th>Differenz</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let d of sortedDifferences()">
+                        <td>{{ d[0] }}</td>
+                        <td>{{ d[1] > 0 ? ('+' + d[1]) : d[1] }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

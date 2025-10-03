@@ -1,0 +1,35 @@
+.container {
+    max-width: 720px;
+    margin: auto;
+}
+
+.controls {
+    display: grid;
+    gap: 0.75rem;
+}
+
+
+
+button {
+    padding: 0.5rem 0.75rem;
+}
+
+.error {
+    color: #ff002f;
+}
+
+.loading {
+    color: #666;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    border: 1px solid #e5e5e5;
+    padding: 0.5rem;
+    text-align: left;
+}

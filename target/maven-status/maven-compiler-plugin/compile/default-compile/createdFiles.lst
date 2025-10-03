@@ -1,0 +1,7 @@
+com\example\eurodenomination\model\AmountRequest.class
+com\example\eurodenomination\controller\DenominationController.class
+com\example\eurodenomination\EuroDenominationApplication.class
+com\example\eurodenomination\model\CalculationHistory.class
+com\example\eurodenomination\repository\CalculationHistoryRepository.class
+com\example\eurodenomination\model\DenominationResult.class
+com\example\eurodenomination\service\DenominationService.class
